@@ -9,4 +9,3 @@ The system should provide the following:
   - Allow reference data, changes are not tracked but are reported when merging new representative data.
 
 The system will not:
-  - 
