@@ -1,7 +1,11 @@
 use harmony::index::Index;
 
-fn main() {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let index = Index::new(".");
-    index.iter()
-        .for_each(|(path,hash)| println!("{}\n{}", path.display(), hash));
+    let encoded: Vec<u8> = bincode::serialize(&index)?;
+    let decoded: Index = bincode::deserialize(&encoded[..])?; 
+    decoded.iter()
+        .for_each(|(path,hash)| println!("{} ({})", path.display(), hash));
+    Ok(())
 }
+
